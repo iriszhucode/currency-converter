@@ -1,0 +1,31 @@
+.converter-component{
+	margin-bottom: 20px;
+}
+
+select{
+	width:100px;
+}
+
+input{
+	width:100px;
+	margin-right:10px;
+}
+
+.disclaimer{
+	position:absolute;
+	left:150px;
+	text-decoration: underline;
+}
+
+.curreny-info{
+	margin-bottom: 10px;
+}
+
+@media only screen and (max-width : 667px) {
+
+.disclaimer{
+	position:relative;
+	left:auto;
+}
+
+}

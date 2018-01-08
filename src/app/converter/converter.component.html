@@ -1,0 +1,39 @@
+<div class="converter-component">
+    <div>
+        <ngl-form-element [error]="baseHasError ? errorMessage : null" label="Type in amount and select currency:" >
+            <input nglFormControl [(ngModel)]="converter.baseValue" (input)="getResult()">
+            <select class="slds-select" (change)="baseCurrencyOnChange($event.target.value)">
+                <option [value]="convertRateSelection" *ngFor = "let convertRateSelection of convertRateSelections" [selected]="convertRateSelection == 'CAD'">{{convertRateSelection}}</option> 
+            </select>
+        </ngl-form-element>
+    </div>
+    <div>
+        <ngl-form-element [error]="resHasError ? errorMessage : null" label="Converted amount:">
+            <input nglFormControl [(ngModel)]="convertResult" (input)="resetResult($event.target.value)"/>
+            <select class="slds-select" (change)="convertCurrencyOnChange($event.target.value)">
+                <option [value]="convertRateSelection" *ngFor = "let convertRateSelection of convertRateSelections" [selected]="convertRateSelection == 'USD'">{{convertRateSelection}}</option> 
+            </select>
+        </ngl-form-element>
+    </div>
+    <div>  
+        <a class="disclaimer" (click)="open()">Disclaimer</a>
+    </div>
+    <ngl-modal [header]="disclaimer" [(open)]="opened">
+        <div body>
+            <div class="curreny-info">
+                <span>Current rate:</span>
+                <span>1</span>
+                <span>{{converter.baseCurrency}}</span>
+                <span>equals to</span>
+                <span>{{convertRate}}</span>
+                <span>{{converter.convertCurrency}}</span>
+            </div>
+            <div>
+                <p>This currency converter is developed using JSON API from http://fixer.io/. The widget comes with no warranty. </p>
+            </div>
+        </div>
+        <ng-template ngl-modal-footer>
+          <button class="slds-button slds-button--neutral" (click)="close()">Close</button>
+        </ng-template>
+    </ngl-modal>
+</div>
